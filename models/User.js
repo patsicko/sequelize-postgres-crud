@@ -17,6 +17,12 @@ User.init({
     type: DataTypes.STRING,
     allowNull: false
   }
+  ,
+  password: {
+    type: DataTypes.STRING,
+    allowNull: true
+  },
+  
 }, {
   sequelize,
   modelName: 'user'
