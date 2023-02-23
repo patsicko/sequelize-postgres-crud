@@ -3,11 +3,12 @@ import bodyParser from 'body-parser';
 import cors from 'cors';
 import sequelize from './config/database.js';
 import User from './models/User.js';
+import dotenv from "dotenv"
 
-// Create an Express.js app
+
 const app = express();
 
-// Use middleware to parse JSON request body and enable CORS
+dotenv.config()
 app.use(bodyParser.json());
 app.use(cors());
 
@@ -93,16 +94,17 @@ async function testSequelize() {
     await sequelize.sync();
     console.log('All models were synchronized successfully.');
   } catch (error) {
-    // Log any errors that occur
+   
     console.error('Error:', error);
   }
 }
 
-// Call the function to test Sequelize
-testSequelize();
+const port=process.env.port;
 
-// Start the server on port 3000
-app.listen(3000, () => {
-    console.log('Server is running on port 3000');
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
   });
   
+testSequelize();
+
+
